@@ -17,7 +17,7 @@ public class RadioTest {
         Assertions.assertEquals(expected, actual);
 
     }
-
+//проверка на изменение в ветке
     @Test
     public void shouldSetRadioStationOutOfRange() {
         Radio radioStation = new Radio();
