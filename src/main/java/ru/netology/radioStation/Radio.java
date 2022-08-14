@@ -1,41 +1,44 @@
 package ru.netology.radioStation;
 public class Radio {
-    //требование 1.1 номер радиостанции от 0 до 9
-    public int currentRadioStation;
+    private int currentRadioStation;
+    private int amountStations = 10;
 
+    public Radio(){
+
+    }
+    public Radio(int amountStations) {
+        this.amountStations = amountStations;
+    }
     public int getCurrentRadioStation() {
         return currentRadioStation;
     }
-    public void setCurrentRadioStation(int newCurrentRadioStation) {
-        if (newCurrentRadioStation <= 0) {
+
+    public void setCurrentRadioStation(int currentRadioStation) {
+        if (currentRadioStation < 0) {
             return;
         }
-        if (newCurrentRadioStation > 9) {
+        if (currentRadioStation > amountStations - 1) {
             return;
         }
-        currentRadioStation = newCurrentRadioStation;
+        this.currentRadioStation = currentRadioStation;
     }
 
-    //требование 1.2 переключение next
-    public void nextRadioStation(int newNextRadioStaion) {
-        if (newNextRadioStaion < 9) {
-            currentRadioStation = newNextRadioStaion + 1;
-            }
-        if (newNextRadioStaion >=9) {
+    public void nextRadioStation(int newNextRadioStation) {
+        if (newNextRadioStation >= amountStations - 1) {
             currentRadioStation = 0;
+        }
+        if (newNextRadioStation < amountStations - 1) {
+            currentRadioStation = newNextRadioStation + 1;
         }
     }
 
     //требование 1.3 переключение prev
-    public void prevRadioStation(int newPrevRadioStation){
+    public void prevRadioStation(int newPrevRadioStation) {
+        if (newPrevRadioStation <= 0) {
+            currentRadioStation = amountStations - 1;
+        }
         if (newPrevRadioStation > 0) {
             currentRadioStation = newPrevRadioStation - 1;
-        }
-        if (newPrevRadioStation <=0) {
-            currentRadioStation = 9;
-        }
-        if (newPrevRadioStation > 9) {
-            currentRadioStation = 9;
         }
     }
 }

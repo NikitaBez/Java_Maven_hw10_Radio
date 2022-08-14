@@ -5,31 +5,18 @@ import org.junit.jupiter.api.Test;
 import ru.netology.volume.Radio;
 
 public class RadioTest {
+    Radio volume = new Radio();
 
     @Test
-    public void shouldSetVolume() {
-        Radio volume = new Radio();
+    public void shouldSetVolumeMinLimitValues() {
 
-        volume.setCurrentVolume(5);
-
-        int expected = 5;
-        int actual = volume.getCurrentVolume();
-
-        Assertions.assertEquals(expected, actual);
-    }
-
-    @Test
-    public void shouldSetVolumeOutOfRange() {
-        Radio volume = new Radio();
-
-        volume.setCurrentVolume(11);
+        volume.setCurrentVolume(-1);
 
         int expected = 0;
         int actual = volume.getCurrentVolume();
 
         Assertions.assertEquals(expected, actual);
     }
-
     @Test
     public void shouldSetVolumeMin() {
         Radio volume = new Radio();
@@ -43,79 +30,133 @@ public class RadioTest {
     }
 
     @Test
+    public void shouldSetVolumeMinLimitValues2() {
+
+        volume.setCurrentVolume(1);
+
+        int expected = 1;
+        int actual = volume.getCurrentVolume();
+
+        Assertions.assertEquals(expected, actual);
+    }
+    @Test
+    public void shouldSetVolumeMaxLimitValue() {
+
+        volume.setCurrentVolume(99);
+
+        int expected = 99;
+        int actual = volume.getCurrentVolume();
+
+        Assertions.assertEquals(expected, actual);
+    }
+    @Test
     public void shouldSetVolumeMax() {
-        Radio volume = new Radio();
 
-        volume.setCurrentVolume(10);
+        volume.setCurrentVolume(100);
 
-        int expected = 10;
+        int expected = 100;
         int actual = volume.getCurrentVolume();
 
         Assertions.assertEquals(expected, actual);
     }
 
+
+    @Test
+    public void shouldSetVolumeOutOfRange() {
+
+        volume.setCurrentVolume(101);
+
+        int expected = 100;
+        int actual = volume.getCurrentVolume();
+
+        Assertions.assertEquals(expected, actual);
+    }
+
+
+
+
+
     //Тесты на требование 2.2 увеличение громкости
     @Test
     public void shouldIncreaseVolume() {
-        Radio volumeUp = new Radio();
 
-        volumeUp.increaseVolume(4);
+        volume.increaseVolume(99);
 
-        int expected = 5;
-        int actual = volumeUp.currentVolume;
+        int expected = 100;
+        int actual = volume.currentVolume;
 
         Assertions.assertEquals(expected, actual);
     }
 
     @Test
     public void shouldIncreaseVolumeMax() {
-        Radio volumeUp = new Radio();
 
-        volumeUp.increaseVolume(11);
+        volume.increaseVolume(100);
 
-        int expected = 10;
-        int actual = volumeUp.currentVolume;
+        int expected = 100;
+        int actual = volume.currentVolume;
+
+        Assertions.assertEquals(expected, actual);
+    }
+
+    @Test
+    public void shouldIncreaseVolumeMaxLimitValue() {
+
+        volume.increaseVolume(101);
+
+        int expected = 100;
+        int actual = volume.currentVolume;
 
         Assertions.assertEquals(expected, actual);
     }
 
 
-    //Тесты на требование 2.3 уменьшение громкости
+
+
+        //Тесты на требование 2.3 уменьшение громкости
     @Test
     public void shouldReduceVolume() {
-        Radio volumeDown = new Radio();
 
-        volumeDown.reduceVolume(5);
+        volume.reduceVolume(2);
 
-        int expected = 4;
-        int actual = volumeDown.currentVolume;
+        int expected = 1;
+        int actual = volume.currentVolume;
 
         Assertions.assertEquals(expected, actual);
     }
 
     @Test
     public void shouldReduceVolumeMin() {
-        Radio volumeDown = new Radio();
 
-        volumeDown.reduceVolume(0);
+        volume.reduceVolume(1);
 
         int expected = 0;
-        int actual = volumeDown.currentVolume;
+        int actual = volume.currentVolume;
+
+        Assertions.assertEquals(expected, actual);
+    }
+    @Test
+    public void shouldReduceVolumeMinLimitValue() {
+
+        volume.reduceVolume(0);
+
+        int expected = 0;
+        int actual = volume.currentVolume;
 
         Assertions.assertEquals(expected, actual);
     }
 
     @Test
     public void shouldReduceVolumeOutOfRange() {
-        Radio volumeDown = new Radio();
 
-        volumeDown.reduceVolume(15);
+        volume.reduceVolume(-1);
 
-        int expected = 10;
-        int actual = volumeDown.currentVolume;
+        int expected = 0;
+        int actual = volume.currentVolume;
 
         Assertions.assertEquals(expected,actual);
     }
 }
+
 
 
