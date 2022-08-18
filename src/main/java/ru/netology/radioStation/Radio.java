@@ -1,41 +1,76 @@
 package ru.netology.radioStation;
-public class Radio {
-    //требование 1.1 номер радиостанции от 0 до 9
-    public int currentRadioStation;
 
+public class Radio {
+    private int currentRadioStation;
+    private int currentVolume;
+
+    //требование 1.1. Номер текущей РС принимает значения от 0 до 9
     public int getCurrentRadioStation() {
         return currentRadioStation;
     }
-    public void setCurrentRadioStation(int newCurrentRadioStation) {
-        if (newCurrentRadioStation <= 0) {
+
+    public void setCurrentRadioStation(int currentRadioStation) {
+        if (currentRadioStation < 0) {
             return;
         }
-        if (newCurrentRadioStation > 9) {
+        if (currentRadioStation > 9) {
             return;
         }
-        currentRadioStation = newCurrentRadioStation;
+        this.currentRadioStation = currentRadioStation;
     }
 
     //требование 1.2 переключение next
-    public void nextRadioStation(int newNextRadioStaion) {
-        if (newNextRadioStaion < 9) {
-            currentRadioStation = newNextRadioStaion + 1;
-            }
-        if (newNextRadioStaion >=9) {
+    public void nextRadioStation() {
+        if (currentRadioStation == 9) {
             currentRadioStation = 0;
+        } else {
+            currentRadioStation++;
         }
     }
 
+
     //требование 1.3 переключение prev
-    public void prevRadioStation(int newPrevRadioStation){
-        if (newPrevRadioStation > 0) {
-            currentRadioStation = newPrevRadioStation - 1;
-        }
-        if (newPrevRadioStation <=0) {
+    public void prevRadioStation() {
+        if (currentRadioStation == 0) {
             currentRadioStation = 9;
+        } else {
+            currentRadioStation--;
         }
-        if (newPrevRadioStation > 9) {
-            currentRadioStation = 9;
+    }
+
+//требование 2.1. Уровень громкости устанавливается в переделах 0 - 10
+
+    public int getCurrentVolume() {
+        return currentVolume;
+    }
+
+    public void setCurrentVolume(int currentVolume) {
+        if (currentVolume < 0) {
+            return;
+        }
+        if (currentVolume > 10) {
+            return;
+        }
+        this.currentVolume = currentVolume;
+    }
+
+    //требование 2.2 увеличение громкости
+    public void increaseVolume() {
+        if (currentVolume < 10) {
+            currentVolume++;
+        }
+        if (currentVolume == 10) {
+            currentVolume = 10;
+        }
+    }
+
+    //требование 2.3 уменьшение громкости
+    public void reduceVolume() {
+        if (currentVolume > 0) {
+            currentVolume--;
+        }
+        if (currentVolume == 0) {
+            currentVolume = 0;
         }
     }
 }
